@@ -1,11 +1,16 @@
+import __init__
 import os
-import sys
-sys.path.insert(0, os.getcwd())
 
 
 class Read_opt_cost:
-    def __init__(self, path_to_opt_cost_file):
-        self.read_data = self.read_fil(path_to_opt_cost_file)
+    def __init__(self, fname):
+        keyw = 'Museum-Path-Optimization'
+        prefix = os.path.join(
+            os.getcwd().split(keyw)[0],
+            keyw,
+            'data',
+            fname)
+        self.read_data = self.read_fil(prefix)
         self.opt_cost_map = {}
         self.generate_opt_cost_map()
 
@@ -17,8 +22,8 @@ class Read_opt_cost:
 
     def generate_opt_cost_map(self):
         for i in self.read_data:
-            l = i.split(' : ')
-            self.opt_cost_map[l[0]] = float(l[1].split(' ')[0][:-1])
+            temp = i.split(' : ')
+            self.opt_cost_map[temp[0]] = float(temp[1].split(' ')[0][:-1])
 
     def get_opt_cost(self, dataset_name):
         if dataset_name in self.opt_cost_map.keys():

@@ -1,0 +1,7 @@
+TSPLIB_NPZ
+SYM
+burma14
+att48
+berlin52
+bier127
+brg180
